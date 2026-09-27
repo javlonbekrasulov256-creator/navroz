@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Navro'z Dasturxoni — milliy taomlar qo'llanmasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF5E9; --ink:#2B2620; --ink-soft:#5A5246;
+  --wheat:#6B8F47; --wheat-deep:#4C6B32;
+  --saffron:#C9862F; --saffron-soft:#E8C489;
+  --plum:#4A3B6B;
+  --card:#FFFFFF; --line:#E4D9C2;
+  --radius:14px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#211D18; --ink:#F1EAD9; --ink-soft:#C7BCA5;
+    --card:#2A251E; --line:#3C3527; --saffron-soft:#5A4626;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#211D18; --ink:#F1EAD9; --ink-soft:#C7BCA5;
+  --card:#2A251E; --line:#3C3527; --saffron-soft:#5A4626;
+}
+html{scroll-padding-top:70px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:'Manrope',sans-serif; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.serif{font-family:'Fraunces',serif;}
+img,svg{max-width:100%;}
+.wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+a{color:var(--wheat-deep);}
+
+/* ---- nav ---- */
+nav{
+  position:sticky; top:0; z-index:20;
+  padding-top:env(safe-area-inset-top,0px);
+  background:color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{max-width:920px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;white-space:nowrap;}
+.brand span{color:var(--wheat-deep);}
+.nav-links{display:flex;gap:18px;overflow-x:auto;font-size:.9rem;color:var(--ink-soft);scrollbar-width:none;}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-links a{color:var(--ink-soft);text-decoration:none;white-space:nowrap;}
+.nav-links a:hover{color:var(--wheat-deep);}
+
+/* ---- hero ---- */
+.hero{padding:64px 0 40px;position:relative;overflow:hidden;}
+.hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;}
+.hero h1{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:600;line-height:1.08;letter-spacing:-.01em;}
+.hero .lede{margin-top:18px;font-size:1.08rem;color:var(--ink-soft);max-width:46ch;}
+.hero .tag{
+  display:inline-block;margin-bottom:18px;font-size:.85rem;color:var(--wheat-deep);
+  border:1px solid var(--wheat);border-radius:100px;padding:5px 14px;
+}
+.sprout{width:100%;height:auto;}
+@media (max-width:720px){.hero-grid{grid-template-columns:1fr;}.hero .sprout{max-width:220px;margin:0 auto;}}
+
+/* ---- section shell ---- */
+section{padding:56px 0;border-top:1px solid var(--line);}
+section h2{font-size:1.9rem;font-weight:600;margin-bottom:8px;}
+.section-note{color:var(--ink-soft);max-width:60ch;margin-bottom:32px;font-size:.98rem;}
+.assumption{
+  font-size:.88rem;color:var(--ink-soft);background:var(--saffron-soft);
+  border-radius:10px;padding:10px 16px;display:inline-block;margin-top:18px;
+}
+
+/* ---- dish cards ---- */
+.dish-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+@media(max-width:640px){.dish-grid{grid-template-columns:1fr;}}
+.dish{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 24px;
+}
+.dish h3{font-size:1.25rem;font-weight:600;margin-bottom:2px;}
+.dish .region{font-size:.82rem;color:var(--wheat-deep);margin-bottom:10px;}
+.dish p{font-size:.92rem;color:var(--ink-soft);margin-bottom:10px;}
+.dish .meta{display:flex;gap:14px;font-size:.8rem;color:var(--ink-soft);flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px;margin-top:12px;}
+.dish .meta b{color:var(--ink);font-weight:600;}
+
+/* ---- recipe ---- */
+.recipe{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 28px 24px;margin-bottom:22px;}
+.recipe-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+.recipe-head h3{font-size:1.4rem;font-weight:600;}
+.recipe-head .time{font-size:.85rem;color:var(--wheat-deep);}
+.recipe-body{display:grid;grid-template-columns:1fr 1.4fr;gap:28px;margin-top:16px;}
+@media(max-width:640px){.recipe-body{grid-template-columns:1fr;}}
+.recipe h4{font-size:.78rem;letter-spacing:.02em;color:var(--ink-soft);margin-bottom:10px;font-weight:600;text-transform:none;}
+.ing-list{list-style:none;font-size:.92rem;}
+.ing-list li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--line);}
+.ing-list li span:last-child{color:var(--ink-soft);}
+.steps{list-style:none;counter-reset:step;font-size:.94rem;}
+.steps li{counter-increment:step;position:relative;padding-left:34px;margin-bottom:14px;}
+.steps li::before{
+  content:counter(step);position:absolute;left:0;top:0;
+  width:24px;height:24px;border-radius:50%;background:var(--wheat);color:#fff;
+  font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+}
+.safety{margin-top:14px;font-size:.86rem;color:var(--ink-soft);border-left:3px solid var(--saffron);padding-left:12px;}
+
+/* ---- menu list ---- */
+.menu-list{columns:2;column-gap:32px;font-size:1rem;}
+@media(max-width:600px){.menu-list{columns:1;}}
+.menu-list li{break-inside:avoid;padding:10px 0;border-bottom:1px solid var(--line);list-style:none;}
+.menu-list li b{display:block;font-family:'Fraunces',serif;font-weight:500;}
+.menu-list li span{font-size:.85rem;color:var(--ink-soft);}
+
+/* ---- shopping table ---- */
+table{width:100%;border-collapse:collapse;font-size:.94rem;}
+th{text-align:left;font-weight:600;color:var(--ink-soft);font-size:.82rem;padding:8px 10px;border-bottom:2px solid var(--line);}
+td{padding:10px 10px;border-bottom:1px solid var(--line);}
+tr:hover td{background:var(--saffron-soft);}
+
+/* ---- timeline ---- */
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:700px){.timeline{grid-template-columns:1fr;}}
+.tl-stage{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;}
+.tl-stage h4{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;margin-bottom:10px;color:var(--wheat-deep);}
+.tl-stage ul{padding-left:18px;font-size:.9rem;color:var(--ink-soft);}
+.tl-stage li{margin-bottom:6px;}
+
+/* ---- budget ---- */
+.budget-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media(max-width:700px){.budget-grid{grid-template-columns:1fr;}}
+.budget-card{border-radius:var(--radius);padding:22px;border:1px solid var(--line);}
+.budget-card.mid{background:var(--plum);color:#F1EAD9;border-color:var(--plum);}
+.budget-card.mid p{color:#D9CFEB;}
+.budget-card h4{font-family:'Fraunces',serif;font-size:1.1rem;margin-bottom:8px;}
+.budget-card p{font-size:.88rem;color:var(--ink-soft);}
+
+/* ---- adapt ---- */
+.adapt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;font-size:.9rem;}
+@media(max-width:700px){.adapt-grid{grid-template-columns:1fr;}}
+.adapt-card{padding:18px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);}
+.adapt-card h4{font-size:.95rem;margin-bottom:6px;font-family:'Fraunces',serif;font-weight:600;}
+.adapt-card p{color:var(--ink-soft);}
+
+/* ---- faq ---- */
+.faq-item{border-bottom:1px solid var(--line);padding:16px 0;}
+.faq-item summary{cursor:pointer;font-weight:600;font-size:1rem;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{content:'+';font-size:1.3rem;color:var(--wheat-deep);}
+.faq-item[open] summary::after{content:'–';}
+.faq-item p{margin-top:10px;color:var(--ink-soft);font-size:.92rem;}
+
+footer{padding:40px 0 calc(40px + env(safe-area-inset-bottom,0px));font-size:.85rem;color:var(--ink-soft);}
+footer a{color:var(--ink-soft);}
+footer .sources{margin-top:10px;}
+footer .sources a{display:block;margin-top:4px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">Navro'z <span>dasturxoni</span></div>
+    <div class="nav-links">
+      <a href="#kirish">Kirish</a>
+      <a href="#taomlar">Taomlar</a>
+      <a href="#retsept">Retseptlar</a>
+      <a href="#menyu">Menyu</a>
+      <a href="#xarid">Xarid</a>
+      <a href="#jadval">Jadval</a>
+      <a href="#byudjet">Byudjet</a>
+      <a href="#savol">Savollar</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">21 mart · Bahorgi tengkunlik</span>
+      <h1>Bahorning ta'mi bilan tayyorlangan dasturxon</h1>
+      <p class="lede">Sumalakdan ko'k somsagacha — Navro'z taomlarining tarixi, aniq retseptlari va 10 kishilik bayram dasturxonini tayyorlash uchun to'liq reja.</p>
+    </div>
+    <svg class="sprout" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 210 L100 90" stroke="var(--wheat-deep)" stroke-width="3" fill="none"/>
+      <path d="M100 130 C 70 120, 55 95, 60 70 C 90 80, 100 105, 100 130 Z" fill="var(--wheat)"/>
+      <path d="M100 110 C 130 100, 145 75, 140 50 C 110 60, 100 85, 100 110 Z" fill="var(--wheat)"/>
+      <path d="M100 90 C 78 78, 68 55, 74 32 C 100 42, 106 68, 100 90 Z" fill="var(--wheat-deep)"/>
+      <ellipse cx="100" cy="205" rx="34" ry="9" fill="var(--saffron-soft)"/>
+    </svg>
+  </div>
+</header>
+
+<section id="kirish">
+  <div class="wrap">
+    <h2>Bahorning dasturxonga chiqishi</h2>
+    <p class="section-note">Navro'z — tabiat uyg'onishi bilan birga keladigan, kamida ikki ming yillik tarixga ega bahorgi tengkunlik bayrami. Uning dasturxoni asosan yangi unib chiqqan bug'doy, ko'k sabzavotlar va bahorgi o't-giyohlardan tayyorlanadigan taomlardan iborat — bu tabiiy uyg'onish ramzi hisoblanadi. Sumalak singari taomlarni tayyorlash yakka tartibda emas, balki qo'shni-qarindoshlar qozon atrofida navbatma-navbat aralashtirib, birgalikda amalga oshiriladigan jamoaviy marosim sifatida davom etib kelmoqda.</p>
+    <p class="assumption">Taxmin: hudud bo'yicha umumiy ko'rinish, 10 kishilik dasturxon asosida tuzildi.</p>
+  </div>
+</section>
+
+<section id="taomlar">
+  <div class="wrap">
+    <h2>Taomlar tahlili</h2>
+    <p class="section-note">Navro'zga xos to'rtta asosiy taom — kundalik dasturxondan farqli o'laroq, faqat shu bayramga xos tayyorlanadigan taomlar.</p>
+    <div class="dish-grid">
+      <div class="dish">
+        <h3>Sumalak</h3>
+        <div class="region">Butun O'zbekiston bo'ylab, ayniqsa Farg'ona vodiysi va Namanganda ommaviy sayllar bilan</div>
+        <p>Unib chiqqan bug'doy ivitmasidan katta qozonda soatlab qaynatib tayyorlanadigan shirin xamirsimon taom. Bayramning markaziy ramzi — tabiat uyg'onishi va hosildorlik timsoli.</p>
+        <div class="meta"><span><b>Murakkablik:</b> Qiyin</span><span><b>Vaqt:</b> 10–12 soat</span></div>
+      </div>
+      <div class="dish">
+        <h3>Halim (halisa)</h3>
+        <div class="region">Ayniqsa qishloqlarda, katta jamoalar uchun</div>
+        <p>Bug'doy va go'sht bilan sekin qaynatilib, ezib tayyorlanadigan to'yimli taom. Uzoq va sabr talab qiluvchi pishirish jarayoni jamoani birlashtiradi.</p>
+        <div class="meta"><span><b>Murakkablik:</b> Qiyin</span><span><b>Vaqt:</b> 6–8 soat</span></div>
+      </div>
+      <div class="dish">
+        <h3>Ko'k somsa</h3>
+        <div class="region">Barcha hududlarda keng tarqalgan</div>
+        <p>Ismaloq, ko'k piyoz va bahorgi o't-giyohlar bilan to'ldirilgan, tandirda yoki oddiy tandirsiz pishiriladigan somsa. Bahorning "yashil" ta'mini dasturxonga olib keladi.</p>
+        <div class="meta"><span><b>Murakkablik:</b> O'rta</span><span><b>Vaqt:</b> 1.5–2 soat</span></div>
+      </div>
+      <div class="dish">
+        <h3>Ko'k chuchvara</h3>
+        <div class="region">Shahar va qishloq dasturxonlarida keng tarqalgan</div>
+        <p>Ko'k sabzavotli ichlik bilan tayyorlangan mayda chuchvara. Ko'k somsaga o'xshab bahorning gie'hli maqsuloti sifatida xizmat qiladi, oilaviy tayyorlanadi.</p>
+        <div class="meta"><span><b>Murakkablik:</b> O'rta</span><span><b>Vaqt:</b> 1.5 soat</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="retsept">
+  <div class="wrap">
+    <h2>Retseptlar</h2>
+    <p class="section-note">Bu yerda ikkita asosiy taom — sumalak va ko'k somsa — bosqichma-bosqich berilgan. Qolgan retseptlar (halim, ko'k chuchvara, novvot chalpak) so'rovingiz bo'yicha shu tarzda qo'shib boriladi.</p>
+
+    <div class="recipe">
+      <div class="recipe-head"><h3 class="serif">Sumalak</h3><span class="time">10 porsiya · ~11 soat</span></div>
+      <div class="recipe-body">
+        <div>
+          <h4>Masalliqlar</h4>
+          <ul class="ing-list">
+            <li><span>Unib chiqqan bug'doy maysasi</span><span>1 kg</span></li>
+            <li><span>Un</span><span>1 kg</span></li>
+            <li><span>Paxta yog'i</span><span>200 ml</span></li>
+            <li><span>Suv</span><span>4–5 l</span></li>
+            <li><span>Yumaloq toshlar (kuydirmaslik uchun)</span><span>7 dona</span></li>
+          </ul>
+          <div class="safety">Xavfsizlik: qozon tagiga qo'yilgan toshlar taom kuyishining oldini oladi — aralashtirish 20–30 daqiqada bir marta uzluksiz davom etishi kerak.</div>
+        </div>
+        <div>
+          <h4>Bosqichlar</h4>
+          <ol class="steps">
+            <li>Bug'doy maysasini mayda maydalab, suvda ezib sharbatini chiqaring va suzib oling.</li>
+            <li>Sharbatga unni asta qo'shib, quyuq bo'tqa holatiga keltiring.</li>
+            <li>Katta qozon tagiga toshlarni joylashtirib, yog'lab, aralashmani soling.</li>
+            <li>Past olovda, muntazam aralashtirib, 8–10 soat qayning — rangi jigarrangga aylanguncha.</li>
+            <li>Qalinlashib, moyi ajralib chiqqach, olovdan tushiring va sovutib xizmat qiling.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe">
+      <div class="recipe-head"><h3 class="serif">Ko'k somsa</h3><span class="time">10 porsiya (≈30 dona) · ~1.5 soat</span></div>
+      <div class="recipe-body">
+        <div>
+          <h4>Masalliqlar</h4>
+          <ul class="ing-list">
+            <li><span>Un (xamir uchun)</span><span>700 g</span></li>
+            <li><span>Suv</span><span>300 ml</span></li>
+            <li><span>Tuz</span><span>1 tsp</span></li>
+            <li><span>Ismaloq</span><span>1 kg</span></li>
+            <li><span>Ko'k piyoz</span><span>300 g</span></li>
+            <li><span>Yog' (ichlik uchun)</span><span>100 ml</span></li>
+          </ul>
+          <div class="safety">Saqlash: pishirilgan somsani xona haroratida 2 soatdan ortiq qoldirmang, muzlatgichda 2 kungacha saqlash mumkin.</div>
+        </div>
+        <div>
+          <h4>Bosqichlar</h4>
+          <ol class="steps">
+            <li>Un, suv va tuzdan qattiqroq xamir qorib, 20 daqiqa dam bering.</li>
+            <li>Ismaloq va ko'k piyozni mayda to'g'rab, tuz va yog' bilan aralashtiring.</li>
+            <li>Xamirni yupqa yoyib, kvadrat yoki uchburchak shaklda kesing.</li>
+            <li>Har biriga ichlikdan solib, cheti yopishtirib yoping.</li>
+            <li>240°C da tandirda yoki 200°C li pechda 25–30 daqiqa qizarguncha pishiring.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menyu">
+  <div class="wrap">
+    <h2>10 kishilik dasturxon</h2>
+    <p class="section-note">Bir-birini takrorlamaydigan, muvozanatli tarkib — og'ir va yengil taomlar aralashmasi.</p>
+    <ul class="menu-list">
+      <li><b>Sumalak</b><span>Bayramning markaziy shirin taomi</span></li>
+      <li><b>Ko'k somsa</b><span>Issiq boshlang'ich taom</span></li>
+      <li><b>Ko'k chuchvara</b><span>Yengil, sho'rvali variant</span></li>
+      <li><b>Novvot chalpak</b><span>Yog'da qovurilgan shirin non</span></li>
+      <li><b>Bahorgi salatlar</b><span>Rediska, ko'k piyoz, ukrop</span></li>
+      <li><b>Quritilgan meva va yong'oqlar</b><span>Dasturxon bezagi</span></li>
+      <li><b>Choy va sharbatlar</b><span>Ko'k choy, murabbo sharbati</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="xarid">
+  <div class="wrap">
+    <h2>Jamlangan xarid ro'yxati</h2>
+    <p class="section-note">Sumalak va ko'k somsa retseptlari asosida hisoblangan umumiy miqdorlar (10 porsiya).</p>
+    <table>
+      <tr><th>Masalliq</th><th>Umumiy miqdor</th><th>Qaysi taom uchun</th></tr>
+      <tr><td>Bug'doy maysasi</td><td>1 kg</td><td>Sumalak</td></tr>
+      <tr><td>Un</td><td>1.7 kg</td><td>Sumalak, ko'k somsa xamiri</td></tr>
+      <tr><td>Paxta yog'i</td><td>300 ml</td><td>Sumalak, ko'k somsa</td></tr>
+      <tr><td>Ismaloq</td><td>1 kg</td><td>Ko'k somsa</td></tr>
+      <tr><td>Ko'k piyoz</td><td>300 g</td><td>Ko'k somsa</td></tr>
+      <tr><td>Tuz</td><td>2 tsp</td><td>Ikkala taom</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="jadval">
+  <div class="wrap">
+    <h2>Tayyorgarlik jadvali</h2>
+    <div class="timeline">
+      <div class="tl-stage">
+        <h4>Bayramdan 2 kun oldin</h4>
+        <ul>
+          <li>Bug'doyni ivitib, unib chiqishi uchun qoldirish</li>
+          <li>Katta qozon va o'choqni tayyorlash (kamida 4–5 kishi uchun joy)</li>
+          <li>Xarid ro'yxati bo'yicha masalliqlarni sotib olish</li>
+        </ul>
+      </div>
+      <div class="tl-stage">
+        <h4>Bayramdan 1 kun oldin</h4>
+        <ul>
+          <li>Ko'k somsa va chuchvara uchun ichlik tayyorlash</li>
+          <li>Salatlar uchun sabzavotlarni yuvib, saqlash</li>
+          <li>Sumalak pishirishni boshlash (kechqurun, 8–10 soatlik jarayon)</li>
+        </ul>
+      </div>
+      <div class="tl-stage">
+        <h4>Bayram kuni</h4>
+        <ul>
+          <li>Sumalakni sovutib, idishlarga bo'lish</li>
+          <li>Ko'k somsa va chuchvarani pishirish</li>
+          <li>Dasturxonni yozish va mehmonlarni kutib olish</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="byudjet">
+  <div class="wrap">
+    <h2>Byudjet variantlari</h2>
+    <p class="section-note">Joriy narxlar tekshirilmagani uchun aniq summa o'rniga tarkib va miqdor farqlari ko'rsatilgan.</p>
+    <div class="budget-grid">
+      <div class="budget-card">
+        <h4>Kam byudjetli</h4>
+        <p>Faqat sumalak va ko'k somsa, oddiy masalliqlar, mevalar minimal miqdorda.</p>
+      </div>
+      <div class="budget-card mid">
+        <h4>O'rtacha</h4>
+        <p>To'liq menyu, o'rtacha miqdordagi quritilgan meva va yong'oqlar, halim qo'shiladi.</p>
+      </div>
+      <div class="budget-card">
+        <h4>Keng dasturxon</h4>
+        <p>Barcha taomlar mo'l miqdorda, sifatli go'sht (halim uchun), bezak va katta mehmon safi uchun zaxira.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="moslashtirish">
+  <div class="wrap">
+    <h2>Moslashtirish</h2>
+    <div class="adapt-grid">
+      <div class="adapt-card"><h4>Go'shtsizlar uchun</h4><p>Halim o'rniga bug'doy va sabzavotli sho'rva tavsiya etiladi.</p></div>
+      <div class="adapt-card"><h4>Allergiyasi borlar uchun</h4><p>Yong'oqlarni dasturxondan alohida idishda taqdim eting, glyutensiz un bilan xamir sinab ko'rilishi mumkin.</p></div>
+      <div class="adapt-card"><h4>Bolalar uchun</h4><p>Ko'k somsani kichikroq shaklda, achchiq ziravorlarsiz tayyorlang.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="savol">
+  <div class="wrap">
+    <h2>Savol-javob</h2>
+    <details class="faq-item" open>
+      <summary>Sumalak diniy marosimmi?</summary>
+      <p>Yo'q. Diniy manbalarga ko'ra sumalak oddiy ozuqaviy taom hisoblanadi, uni ilohiylashtiruvchi urf-odatlar asossiz tushunchalardir.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Sumalakni nima uchun shunча uzoq qaynatish kerak?</summary>
+      <p>Uzoq qaynatish bug'doydagi kraxmalni shakarga aylantirib, taomning tabiiy shirinligi va qalin teksturasini shakllantiradi.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Ko'k somsa va ko'k chuchvara orasidagi farq nima?</summary>
+      <p>Ikkalasi ham bahorgi ko'katlardan tayyorlanadi, farqi shaklda va pishirish usulida — somsa tandirda, chuchvara qaynatib tayyorlanadi.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Sumalakni oldindan tayyorlab qo'yish mumkinmi?</summary>
+      <p>Ha, sovutilgan sumalak yopiq idishda muzlatgichda bir necha kun saqlanadi.</p>
+    </details>
+    <details class="faq-item">
+      <summary>10 kishiga qancha sumalak kerak bo'ladi?</summary>
+      <p>Taxminan 1 kg unib chiqqan bug'doydan tayyorlangan miqdor 10 kishilik porsiyaga yetadi.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Ushbu qo'llanma umumiy ma'lumot sifatida tuzilgan; hududiy urf-odatlar oilama-oila farq qilishi mumkin.</p>
+    <div class="sources">
+      <span>Foydalanilgan manbalar:</span>
+      <a href="https://tourcentralasia.com/?p=6796" target="_blank">Tour Central Asia — Navruz Cuisine</a>
+      <a href="https://pressbooks.pub/kaz150/?p=691" target="_blank">Pressbooks — O'zbekistonda Navro'z</a>
+      <a href="https://kun.uz/news/2017/03/18/sumalak-iloij-taommi" target="_blank">Kun.uz — Sumalak haqida diniy izoh</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
